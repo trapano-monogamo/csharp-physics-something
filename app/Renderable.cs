@@ -4,7 +4,6 @@ using OpenTK.Mathematics;
 using shader;
 using texture;
 using transform;
-using camera;
 
 namespace renderable {
    public class Renderable : Transform
@@ -15,8 +14,10 @@ namespace renderable {
       private int elementBufferObject;
       public int vertexArrayObject;
 
-      private float[] _vertexData;
-      public  uint[] _indexData;
+      public float[] _vertexData;
+      public float[] _normalData;
+      public float[] _textureData;
+      public uint[] _indexData;
 
       public Shader shaderProgram;
       public List<Texture> textures;

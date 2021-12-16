@@ -9,6 +9,7 @@ using renderable;
 using shader;
 using texture;
 using camera;
+using objectloader;
 
 namespace game
 {
@@ -54,6 +55,8 @@ namespace game
          GL.Enable(EnableCap.DepthTest);
 
          // -- resource loading code --
+
+         ObjectLoader.LoadObjFile("./res/models/untitled.obj");
 
          camera.Move(new Vector3(.0f, .0f, 3.0f));
          
