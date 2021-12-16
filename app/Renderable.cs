@@ -10,6 +10,7 @@ namespace renderable {
    {
       public string name {set;get;}
 
+      // mesh
       private int vertexBufferObject;
       private int elementBufferObject;
       public int vertexArrayObject;
@@ -19,6 +20,10 @@ namespace renderable {
       public float[] _textureData;
       public uint[] _indexData;
 
+      // material
+      //Material material;
+
+      // other
       public Shader shaderProgram;
       public List<Texture> textures;
 

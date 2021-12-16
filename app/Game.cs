@@ -11,6 +11,10 @@ using texture;
 using camera;
 using objectloader;
 
+// TODO : refactor naming of everything
+// TODO : put renderable mesh data into mesh class
+// TODO : put it all together and load .obj and .mtl files
+
 namespace game
 {
    public class Game : GameWindow
@@ -56,7 +60,7 @@ namespace game
 
          // -- resource loading code --
 
-         ObjectLoader.LoadObjFile("./res/models/untitled.obj");
+         //ObjectLoader.LoadObjFile("./res/models/untitled.obj");
 
          camera.Move(new Vector3(.0f, .0f, 3.0f));
          
