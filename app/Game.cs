@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
@@ -31,7 +31,7 @@ namespace game
          wireframeMode = -1;
          camera = new Camera(90f);
          speed = 2.1f;
-         sensitivity = 1.0f;
+         sensitivity = 1.1f;
          windowSize = nativeWindowSettings.Size;
          mouseFocused = false;
          lastPos = new Vector2(0.0f);
@@ -92,6 +92,44 @@ namespace game
             new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
             new Texture[]{ new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ }
          ));
+         
+         renderableObjects.Add(new Renderable(
+            new float[]{
+            // position            color                     texture coords
+            -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // near top    right
+             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // near bottom right
+             0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // near bottom left
+            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 1.0f,   // near top    left
+            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // far  top    right
+             0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // far  bottom right
+             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // far  bottom left
+            -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // far  top    left
+            },
+            new uint[]{
+               // front face
+               0, 1, 2, 
+               2, 3, 0,
+               // back face
+               7, 6, 5,
+               5, 4, 7,
+               // left face
+               4, 5, 1,
+               1, 0, 4,
+               // right face
+               3, 2, 6,
+               6, 7, 3,
+               // top face
+               1, 5, 6,
+               6, 2, 1,
+               // bottom face
+               4, 0, 3,
+               3, 7, 4,
+            },
+            new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
+            new Texture[]{ new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ }
+         ));
+
+         renderableObjects[0].Translate(new Vector3(2.5f, -1.3f, -0.2f));
 
          base.OnLoad();
       }
@@ -167,27 +205,16 @@ namespace game
          var mouse = MouseState;
 
          if (mouseFocused) {
-            var dx = mouse.X - lastPos.X;
-            var dy = mouse.Y - lastPos.Y;
+            float dx = mouse.X - lastPos.X;
+            float dy = mouse.Y - lastPos.Y;
             camera.pitch -= dy * sensitivity;
             camera.yaw += dx * sensitivity;
             lastPos = new Vector2(mouse.X, mouse.Y);
-            System.Console.WriteLine(System.String.Format("x: {0}, y: {1}\t dx: {2}, dy: {3}", mouse.X, mouse.Y, dx, dy));
+            //System.Console.WriteLine(System.String.Format("x: {0}, y: {1}\t dx: {2}, dy: {3}", mouse.X, mouse.Y, dx, dy));
             camera.UpdateDirection();
          }
 
-         //if (firstMove) {
-         //   lastPos = new Vector2(mouse.X, mouse.Y);
-         //   firstMove = false;
-         //} else {
-         //   var deltaX = mouse.X - lastPos.X;
-         //   var deltaY = mouse.Y - lastPos.Y;
-         //   lastPos = new Vector2(deltaX, deltaY);
-         //   camera.Yaw += deltaX * sensitivity;
-         //   camera.Pitch += deltaY * sensitivity;
-         //}
-
-         renderableObjects[0].Rotate(.0f, .1f, .2f);
+         renderableObjects[0].Rotate(new Vector3(.0f, .1f, .2f));
 
          base.OnUpdateFrame(args);
       }
