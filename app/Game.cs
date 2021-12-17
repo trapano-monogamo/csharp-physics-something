@@ -14,6 +14,7 @@ using objectloader;
 // TODO : refactor naming of everything
 // TODO : put renderable mesh data into mesh class
 // TODO : put it all together and load .obj and .mtl files
+// TODO : integrate .obj and .mtl files with the renderable creation process
 
 namespace game
 {
