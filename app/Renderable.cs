@@ -59,7 +59,8 @@ namespace renderable {
          GL.EnableVertexAttribArray(posLocation);
          // aColor
          int colLocation = shaderProgram.GetAttribLocation("aColor");
-         GL.VertexAttribPointer(colLocation, 3, VertexAttribPointerType.Float, false, 9 * sizeof(float), 3 * sizeof(float));
+         GL.VertexAttribPointer(colLocation, 4, VertexAttribPointerType.Float, false, 9 * sizeof(float), 3 * sizeof(float));
+         GL.EnableVertexAttribArray(colLocation);
          // aTexCoords
          int texCoordLocation = shaderProgram.GetAttribLocation("aTexCoord");
          GL.EnableVertexAttribArray(texCoordLocation);

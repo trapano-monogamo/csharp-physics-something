@@ -67,14 +67,14 @@ namespace game
          renderableObjects.Add(new Renderable(
             new float[]{
             // position            color                     texture coords
-            -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // near top    right
-             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // near bottom right
-             0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // near bottom left
-            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 1.0f,   // near top    left
-            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // far  top    right
-             0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // far  bottom right
-             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // far  bottom left
-            -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // far  top    left
+            -0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 0.5f,   0.0f, 0.0f,   // near top    right
+             0.5f, -0.5f,  0.5f,   0.0f, 0.0f, 1.0f, 0.5f,   1.0f, 0.0f,   // near bottom right
+             0.5f,  0.5f,  0.5f,   0.0f, 1.0f, 0.0f, 0.5f,   1.0f, 1.0f,   // near bottom left
+            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.5f,   0.0f, 1.0f,   // near top    left
+            -0.5f, -0.5f, -0.5f,   1.0f, 0.0f, 1.0f, 0.5f,   0.0f, 0.0f,   // far  top    right
+             0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 0.0f, 0.5f,   1.0f, 0.0f,   // far  bottom right
+             0.5f,  0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 0.5f,   1.0f, 1.0f,   // far  bottom left
+            -0.5f,  0.5f, -0.5f,   0.0f, 1.0f, 1.0f, 0.5f,   0.0f, 1.0f    // far  top    left
             },
             new uint[]{
                // front face
@@ -103,14 +103,14 @@ namespace game
          renderableObjects.Add(new Renderable(
             new float[]{
             // position            color                     texture coords
-            -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // near top    right
-             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // near bottom right
-             0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // near bottom left
-            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 1.0f,   // near top    left
-            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // far  top    right
-             0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // far  bottom right
-             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // far  bottom left
-            -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // far  top    left
+            -0.5f, -0.5f,  0.5f,   0.0f, 1.0f, 1.0f, 0.5f,   0.0f, 0.0f,   // near top    right
+             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 0.0f, 0.5f,   1.0f, 0.0f,   // near bottom right
+             0.5f,  0.5f,  0.5f,   0.0f, 0.0f, 1.0f, 0.5f,   1.0f, 1.0f,   // near bottom left
+            -0.5f,  0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 0.5f,   0.0f, 1.0f,   // near top    left
+            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.5f,   0.0f, 0.0f,   // far  top    right
+             0.5f, -0.5f, -0.5f,   1.0f, 0.0f, 1.0f, 0.5f,   1.0f, 0.0f,   // far  bottom right
+             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.5f,   1.0f, 1.0f,   // far  bottom left
+            -0.5f,  0.5f, -0.5f,   0.0f, 1.0f, 0.0f, 0.5f,   0.0f, 1.0f    // far  top    left
             },
             new uint[]{
                // front face
@@ -133,7 +133,8 @@ namespace game
                3, 7, 4,
             },
             new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
-            new Texture[]{ new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ }
+            //new Texture[]{ new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ }
+            new Texture[]{}
          ));
 
          renderableObjects[0].Translate(new Vector3(2.5f, -1.3f, -0.2f));

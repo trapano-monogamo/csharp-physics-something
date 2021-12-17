@@ -12,9 +12,9 @@
          ],
          "group": "build",
          "presentation": {
-            //"reveal": "silent"
+            "reveal": "silent"
          },
-         "problemMatcher": "$msCompile"
+         "problemMatcher": "$msCompile",
       },
       {
          "label": "run",
@@ -25,7 +25,7 @@
          ],
          "group": "build",
          "presentation": {
-            //"reveal": "silent"
+            "reveal": "silent"
          },
          "problemMatcher": "$msCompile"
       }

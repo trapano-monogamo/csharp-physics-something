@@ -47,9 +47,6 @@ namespace camera {
          this.dir.X = (float)Math.Cos(MathHelper.DegreesToRadians(_pitch)) * (float)Math.Cos(MathHelper.DegreesToRadians(_yaw));
          this.dir.Y = (float)Math.Sin(MathHelper.DegreesToRadians(_pitch));
          this.dir.Z = (float)Math.Cos(MathHelper.DegreesToRadians(_pitch)) * (float)Math.Sin(MathHelper.DegreesToRadians(_yaw));
-         //this.dir.X = MathF.Cos(_pitch) * MathF.Cos(_yaw);
-         //this.dir.Y = MathF.Sin(_pitch);
-         //this.dir.Z = MathF.Cos(_pitch) * MathF.Sin(_yaw);
          this.dir = Vector3.Normalize(this.dir);
          this.right = Vector3.Normalize(Vector3.Cross(this.dir, Vector3.UnitY));
          this.up = Vector3.Normalize(Vector3.Cross(this.right, this.dir));
@@ -75,6 +72,9 @@ namespace camera {
          } else {
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
          }
+
+         // unbinding textures
+         GL.BindTexture(TextureTarget.Texture2D, 0);
 
          // bind VAO, textures, shader
          GL.BindVertexArray(obj.vertexArrayObject);

@@ -12,13 +12,13 @@
          "program": "${workspaceFolder}/bin/Debug/net5.0/physics_goes_brr.dll",
          "args": [],
          "cwd": "${workspaceFolder}",
-         "console": "internalConsole",
-         "stopAtEntry": false
+         "console": "externalTerminal",
+         "stopAtEntry": true
       },
       {
          "name": ".NET Core Attach",
          "type": "coreclr",
-         "request": "attach"
+         "console": "externalTerminal",
       }
    ]
 }
