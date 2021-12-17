@@ -60,7 +60,8 @@ namespace game
 
          // -- resource loading code --
 
-         //ObjectLoader.LoadObjFile("./res/models/untitled.obj");
+         var temp = ObjectLoader.LoadObjFile("./res/models/untitled.obj");
+         temp.Print();
 
          camera.Move(new Vector3(.0f, .0f, 3.0f));
          
