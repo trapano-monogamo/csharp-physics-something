@@ -8,17 +8,15 @@ using OpenTK.Mathematics;
 using renderable;
 using shader;
 using texture;
-using camera;
-using objectloader;
-using lightsource;
 using scene;
 
 // TODO : refactor naming of everything
 // TODO : put renderable mesh data into mesh class
+// TODO : MouseControl/MouseHelper helper class
 // TODO : LightSource
 //          -> consider making a lightSources list in the game (in the future scene class) and render them first, then the renderableObjects
 // TODO : material
-// TODO : Scene (renderables + light sources + camera)
+// DONE : Scene (renderables + light sources + camera)
 // TODO : abstract the game class (use the default OnLoad etc, and call there the OnLoad defined by the user their derived class)
 // TODO : integrate .obj and .mtl files with the renderable creation process
 
@@ -31,6 +29,7 @@ namespace game
       float sensitivity;
       Vector2 lastPos;
       bool mouseFocused;
+      bool shouldClose = false;
       Vector2 windowSize;
 
       public Scene scene;
@@ -50,12 +49,6 @@ namespace game
       public void Start()
       {
          Run();
-      }
-
-      protected override void OnResize(ResizeEventArgs e)
-      {
-         GL.Viewport(0,0,e.Width,e.Height);
-         base.OnResize(e);
       }
 
       protected override void OnLoad()
@@ -171,6 +164,9 @@ namespace game
 
          Context.SwapBuffers();
          base.OnRenderFrame(args);
+
+         // finish rendering before exiting
+         if (this.shouldClose) { base.Close(); }
       }
 
       protected override void OnUpdateFrame(FrameEventArgs args)
@@ -183,7 +179,7 @@ namespace game
 
          if (keyboard.IsKeyDown(Keys.Escape))
          {
-            base.Close();
+            this.shouldClose = true;
          }
          if (keyboard.IsKeyPressed(Keys.M))
          {
@@ -232,12 +228,28 @@ namespace game
 
          scene.renderableObjects[0].Rotate(new Vector3(.0f, .1f, .2f));
 
+         this.UserInput();
+         this.UserUpdate();
+
          base.OnUpdateFrame(args);
+      }
+
+      protected override void OnResize(ResizeEventArgs e)
+      {
+         GL.Viewport(0,0,e.Width,e.Height);
+         base.OnResize(e);
       }
 
       protected override void OnMouseMove(MouseMoveEventArgs e)
       {
          base.OnMouseMove(e);
       }
+
+
+      protected virtual void UserLoad() {}
+      protected virtual void UserUnload() {}
+      protected virtual void UserInput() {}
+      protected virtual void UserRender() {}
+      protected virtual void UserUpdate() {}
    }
 }
