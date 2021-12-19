@@ -66,9 +66,9 @@ namespace camera {
          this.projection = Matrix4.CreateOrthographic(w,h,n,f);
       }
 
-      public void Render(Renderable obj, int wireframeMode) {
+      public void Render(Renderable obj, bool wireframeMode) {
          // wireframe mode
-         if (wireframeMode == 1) {
+         if (wireframeMode) {
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
          } else {
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);

@@ -11,6 +11,7 @@ using texture;
 using camera;
 using objectloader;
 using lightsource;
+using scene;
 
 // TODO : refactor naming of everything
 // TODO : put renderable mesh data into mesh class
@@ -25,29 +26,25 @@ namespace game
 {
    public class Game : GameWindow
    {
-      List<Renderable> renderableObjects;
-      Camera camera;
-      int wireframeMode;
+      bool wireframeMode;
       float speed;
       float sensitivity;
       Vector2 lastPos;
       bool mouseFocused;
       Vector2 windowSize;
 
-      public LightSource lightSource;
+      public Scene scene;
 
       public Game(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
          : base(gameWindowSettings, nativeWindowSettings)
       {
-         renderableObjects = new List<Renderable>();
-         wireframeMode = -1;
-         camera = new Camera(90f);
+         wireframeMode = false;
          speed = 2.1f;
          sensitivity = 1.1f;
          windowSize = nativeWindowSettings.Size;
          mouseFocused = false;
          lastPos = new Vector2(0.0f);
-         //lightSource = new LightSource();
+         this.scene = new Scene();
       }
 
       public void Start()
@@ -71,10 +68,10 @@ namespace game
          //var temp = ObjectLoader.LoadObjFile("./res/models/untitled.obj");
          //temp.Print();
 
-         camera.Move(new Vector3(.0f, .0f, 3.0f));
+         scene.camera.Move(new Vector3(.0f, .0f, 3.0f));
          
          // normal cube with texture
-         renderableObjects.Add(new Renderable(
+         scene.renderableObjects.Add(new Renderable(
             new float[]{
             // position            color                     texture coords
             -0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // near top    right
@@ -112,7 +109,7 @@ namespace game
          ));
          
          // light source
-         renderableObjects.Add(new Renderable(
+         scene.renderableObjects.Add(new Renderable(
             new float[]{
             // position            color                     texture coords
             -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // near top    right
@@ -149,7 +146,7 @@ namespace game
             "lamp"
          ));
 
-         var lamp = renderableObjects.FindLast(x => x.name == "lamp");
+         var lamp = scene.renderableObjects.FindLast(x => x.name == "lamp");
          //this.lightSource = new LightSource(LightSourceType.Point, new Color4(1.0f, 1.0f, 1.0f, 1.0f), ref lamp);;
          lamp.Translate(new Vector3(2.5f, 1.3f, -1.2f));
          lamp.Scale(new Vector3(0.5f, 0.5f, 0.5f));
@@ -160,9 +157,7 @@ namespace game
 
       protected override void OnUnload()
       {
-         foreach (var r in this.renderableObjects) {
-            r.Delete();
-         }
+         scene.Delete();
          base.OnUnload();
       }
 
@@ -172,10 +167,7 @@ namespace game
 
          // -- RENDERING CODE --
 
-         foreach (var r in this.renderableObjects)
-         {
-            camera.Render(r, wireframeMode);
-         }
+         scene.Render(wireframeMode);
 
          Context.SwapBuffers();
          base.OnRenderFrame(args);
@@ -195,7 +187,7 @@ namespace game
          }
          if (keyboard.IsKeyPressed(Keys.M))
          {
-            this.wireframeMode *= -1;
+            this.wireframeMode = !wireframeMode;
          }
          if (keyboard.IsKeyPressed(Keys.N))
          {
@@ -204,26 +196,26 @@ namespace game
             if (!CursorGrabbed) { CursorVisible = true; }
          }
 
-         Vector3 horizontalDir = Vector3.Normalize(new Vector3(camera.dir.X, 0.0f, camera.dir.Z));
+         Vector3 horizontalDir = Vector3.Normalize(new Vector3(scene.camera.dir.X, 0.0f, scene.camera.dir.Z));
          Vector3 horizontalUp = new Vector3(0.0f, 1.0f, 0.0f);
 
          if (keyboard.IsKeyDown(Keys.W)) {
-            camera.Move(horizontalDir * speed * (float)args.Time);
+            scene.camera.Move(horizontalDir * speed * (float)args.Time);
          }
          if (keyboard.IsKeyDown(Keys.A)) {
-            camera.Move((-camera.right) * speed * (float)args.Time);
+            scene.camera.Move((-scene.camera.right) * speed * (float)args.Time);
          }
          if (keyboard.IsKeyDown(Keys.S)) {
-            camera.Move((-horizontalDir) * speed * (float)args.Time);
+            scene.camera.Move((-horizontalDir) * speed * (float)args.Time);
          }
          if (keyboard.IsKeyDown(Keys.D)) {
-            camera.Move(camera.right * speed * (float)args.Time);
+            scene.camera.Move(scene.camera.right * speed * (float)args.Time);
          }
          if (keyboard.IsKeyDown(Keys.Space)) {
-            camera.Move(horizontalUp * speed * (float)args.Time);
+            scene.camera.Move(horizontalUp * speed * (float)args.Time);
          }
          if (keyboard.IsKeyDown(Keys.LeftShift)) {
-            camera.Move((-horizontalUp) * speed * (float)args.Time);
+            scene.camera.Move((-horizontalUp) * speed * (float)args.Time);
          }
 
          var mouse = MouseState;
@@ -231,14 +223,14 @@ namespace game
          if (mouseFocused) {
             float dx = mouse.X - lastPos.X;
             float dy = mouse.Y - lastPos.Y;
-            camera.pitch -= dy * sensitivity;
-            camera.yaw += dx * sensitivity;
+            scene.camera.pitch -= dy * sensitivity;
+            scene.camera.yaw += dx * sensitivity;
             lastPos = new Vector2(mouse.X, mouse.Y);
             //System.Console.WriteLine(System.String.Format("x: {0}, y: {1}\t dx: {2}, dy: {3}", mouse.X, mouse.Y, dx, dy));
-            camera.UpdateDirection();
+            scene.camera.UpdateDirection();
          }
 
-         renderableObjects[0].Rotate(new Vector3(.0f, .1f, .2f));
+         scene.renderableObjects[0].Rotate(new Vector3(.0f, .1f, .2f));
 
          base.OnUpdateFrame(args);
       }
