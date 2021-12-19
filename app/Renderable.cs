@@ -28,8 +28,12 @@ namespace renderable {
       public Shader shaderProgram;
       public List<Texture> textures;
 
+      public Renderable()
+         : base(new Vector4(.0f), new Vector4(.0f), new Vector4(.0f))
+      {}
+
       public Renderable(float[] vertexRawData, uint[] indexData, Shader _shaderProgram, Texture[] _textures, string name = "unknown")
-         : base(new Vector4(.0f, .0f, .0f, .0f), new Vector4(1.0f,1.0f,1.0f,1.0f), new Vector4(.0f,.0f,.0f,.0f))
+         : base(new Vector4(.0f), new Vector4(1.0f), new Vector4(.0f))
       {
          // set up object properties
          this.name = name;

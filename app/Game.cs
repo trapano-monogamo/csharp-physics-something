@@ -14,6 +14,8 @@ using lightsource;
 
 // TODO : refactor naming of everything
 // TODO : put renderable mesh data into mesh class
+// TODO : LightSource
+//          -> consider making a lightSources list in the game (in the future scene class) and render them first, then the renderableObjects
 // TODO : material
 // TODO : Scene (renderables + light sources + camera)
 // TODO : abstract the game class (use the default OnLoad etc, and call there the OnLoad defined by the user their derived class)
@@ -45,6 +47,7 @@ namespace game
          windowSize = nativeWindowSettings.Size;
          mouseFocused = false;
          lastPos = new Vector2(0.0f);
+         //lightSource = new LightSource();
       }
 
       public void Start()
@@ -147,9 +150,10 @@ namespace game
          ));
 
          var lamp = renderableObjects.FindLast(x => x.name == "lamp");
+         //this.lightSource = new LightSource(LightSourceType.Point, new Color4(1.0f, 1.0f, 1.0f, 1.0f), ref lamp);;
          lamp.Translate(new Vector3(2.5f, 1.3f, -1.2f));
          lamp.Scale(new Vector3(0.5f, 0.5f, 0.5f));
-         //this.lightSource;
+         //System.Console.WriteLine(System.String.Format("lamp: {0}, {1} \t ls: {2}, {3}", lamp.position.X, lamp.position.Y, lightSource.position.X, lightSource.position.Y));
 
          base.OnLoad();
       }
