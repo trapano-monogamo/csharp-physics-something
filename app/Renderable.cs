@@ -9,7 +9,7 @@ using lightsource;
 namespace renderable {
    public class Renderable : Transform
    {
-      public string name {set;get;}
+      public string name;
 
       // mesh
       private int vertexBufferObject;
@@ -32,6 +32,7 @@ namespace renderable {
          : base(new Vector4(.0f, .0f, .0f, .0f), new Vector4(1.0f,1.0f,1.0f,1.0f), new Vector4(.0f,.0f,.0f,.0f))
       {
          // set up object properties
+         this.name = name;
          shaderProgram = _shaderProgram;
          textures = new List<Texture>(_textures);
          _vertexData = vertexRawData;

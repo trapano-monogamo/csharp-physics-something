@@ -14,6 +14,9 @@ using lightsource;
 
 // TODO : refactor naming of everything
 // TODO : put renderable mesh data into mesh class
+// TODO : material
+// TODO : Scene (renderables + light sources + camera)
+// TODO : abstract the game class (use the default OnLoad etc, and call there the OnLoad defined by the user their derived class)
 // TODO : integrate .obj and .mtl files with the renderable creation process
 
 namespace game
@@ -29,7 +32,7 @@ namespace game
       bool mouseFocused;
       Vector2 windowSize;
 
-      
+      public LightSource lightSource;
 
       public Game(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
          : base(gameWindowSettings, nativeWindowSettings)
@@ -101,7 +104,8 @@ namespace game
                3, 7, 4,
             },
             new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
-            new Texture[]{ new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ }
+            new Texture[]{ new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ },
+            "cube"
          ));
          
          // light source
@@ -138,10 +142,14 @@ namespace game
                3, 7, 4,
             },
             new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
-            new Texture[]{ /*new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")*/ }
+            new Texture[]{ /*new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")*/ },
+            "lamp"
          ));
 
-         renderableObjects[1].Translate(new Vector3(2.5f, -1.3f, -1.2f));
+         var lamp = renderableObjects.FindLast(x => x.name == "lamp");
+         lamp.Translate(new Vector3(2.5f, 1.3f, -1.2f));
+         lamp.Scale(new Vector3(0.5f, 0.5f, 0.5f));
+         //this.lightSource;
 
          base.OnLoad();
       }

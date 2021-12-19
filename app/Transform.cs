@@ -22,7 +22,7 @@ namespace transform {
          this.position += new Vector4(_movement.X, _movement.Y, _movement.Z, 0.0f);
       }
       public void Scale(Vector3 _scaler) {
-         this.scale += new Vector4(_scaler.X, _scaler.Y, _scaler.Z, 0.0f);
+         this.scale *= new Vector4(_scaler.X, _scaler.Y, _scaler.Z, 0.0f);
       }
 
       public Matrix4 recalculateTransform() {
