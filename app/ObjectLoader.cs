@@ -102,5 +102,7 @@ namespace objectloader
             material = material,
          };
       }
+      
+      public static void LoadMtlFile(string path) {}
    }
 }

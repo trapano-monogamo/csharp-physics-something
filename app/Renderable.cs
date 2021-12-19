@@ -4,6 +4,7 @@ using OpenTK.Mathematics;
 using shader;
 using texture;
 using transform;
+using lightsource;
 
 namespace renderable {
    public class Renderable : Transform

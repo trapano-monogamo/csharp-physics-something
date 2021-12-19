@@ -65,12 +65,14 @@ namespace shader
       }
 
       public void SetMatrix4(string name, Matrix4 mat, bool transpose = true) {
+         this.UseProgram();
          int location = GetUniformLocation(name);
          GL.UniformMatrix4(location, transpose, ref mat);
       }
 
       public void SetInt(string name, int value)
       {
+         this.UseProgram();
          int location = GL.GetUniformLocation(handle, name);
          GL.Uniform1(location, value);
       }

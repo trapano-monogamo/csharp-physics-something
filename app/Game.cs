@@ -10,10 +10,10 @@ using shader;
 using texture;
 using camera;
 using objectloader;
+using lightsource;
 
 // TODO : refactor naming of everything
 // TODO : put renderable mesh data into mesh class
-// TODO : put it all together and load .obj and .mtl files
 // TODO : integrate .obj and .mtl files with the renderable creation process
 
 namespace game
@@ -27,8 +27,9 @@ namespace game
       float sensitivity;
       Vector2 lastPos;
       bool mouseFocused;
-
       Vector2 windowSize;
+
+      
 
       public Game(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
          : base(gameWindowSettings, nativeWindowSettings)
@@ -61,22 +62,23 @@ namespace game
 
          // -- resource loading code --
 
-         var temp = ObjectLoader.LoadObjFile("./res/models/untitled.obj");
-         temp.Print();
+         //var temp = ObjectLoader.LoadObjFile("./res/models/untitled.obj");
+         //temp.Print();
 
          camera.Move(new Vector3(.0f, .0f, 3.0f));
          
+         // normal cube with texture
          renderableObjects.Add(new Renderable(
             new float[]{
             // position            color                     texture coords
-            -0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 0.5f,   0.0f, 0.0f,   // near top    right
-             0.5f, -0.5f,  0.5f,   0.0f, 0.0f, 1.0f, 0.5f,   1.0f, 0.0f,   // near bottom right
-             0.5f,  0.5f,  0.5f,   0.0f, 1.0f, 0.0f, 0.5f,   1.0f, 1.0f,   // near bottom left
-            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 0.5f,   0.0f, 1.0f,   // near top    left
-            -0.5f, -0.5f, -0.5f,   1.0f, 0.0f, 1.0f, 0.5f,   0.0f, 0.0f,   // far  top    right
-             0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 0.0f, 0.5f,   1.0f, 0.0f,   // far  bottom right
-             0.5f,  0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 0.5f,   1.0f, 1.0f,   // far  bottom left
-            -0.5f,  0.5f, -0.5f,   0.0f, 1.0f, 1.0f, 0.5f,   0.0f, 1.0f    // far  top    left
+            -0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // near top    right
+             0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 0.0f,   // near bottom right
+             0.5f,  0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 1.0f,   // near bottom left
+            -0.5f,  0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 1.0f,   // near top    left
+            -0.5f, -0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // far  top    right
+             0.5f, -0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 0.0f,   // far  bottom right
+             0.5f,  0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 1.0f,   // far  bottom left
+            -0.5f,  0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 1.0f    // far  top    left
             },
             new uint[]{
                // front face
@@ -102,17 +104,18 @@ namespace game
             new Texture[]{ new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ }
          ));
          
+         // light source
          renderableObjects.Add(new Renderable(
             new float[]{
             // position            color                     texture coords
-            -0.5f, -0.5f,  0.5f,   0.0f, 1.0f, 1.0f, 0.5f,   0.0f, 0.0f,   // near top    right
-             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 0.0f, 0.5f,   1.0f, 0.0f,   // near bottom right
-             0.5f,  0.5f,  0.5f,   0.0f, 0.0f, 1.0f, 0.5f,   1.0f, 1.0f,   // near bottom left
-            -0.5f,  0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 0.5f,   0.0f, 1.0f,   // near top    left
-            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.5f,   0.0f, 0.0f,   // far  top    right
-             0.5f, -0.5f, -0.5f,   1.0f, 0.0f, 1.0f, 0.5f,   1.0f, 0.0f,   // far  bottom right
-             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 0.5f,   1.0f, 1.0f,   // far  bottom left
-            -0.5f,  0.5f, -0.5f,   0.0f, 1.0f, 0.0f, 0.5f,   0.0f, 1.0f    // far  top    left
+            -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // near top    right
+             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,   // near bottom right
+             0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   // near bottom left
+            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   // near top    left
+            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // far  top    right
+             0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,   // far  bottom right
+             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   // far  bottom left
+            -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f    // far  top    left
             },
             new uint[]{
                // front face
@@ -135,11 +138,10 @@ namespace game
                3, 7, 4,
             },
             new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
-            //new Texture[]{ new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ }
-            new Texture[]{}
+            new Texture[]{ /*new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")*/ }
          ));
 
-         renderableObjects[0].Translate(new Vector3(2.5f, -1.3f, -0.2f));
+         renderableObjects[1].Translate(new Vector3(2.5f, -1.3f, -1.2f));
 
          base.OnLoad();
       }

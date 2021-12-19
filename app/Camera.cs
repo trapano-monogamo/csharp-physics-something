@@ -2,6 +2,7 @@ using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using System;
 using renderable;
+using lightsource;
 
 namespace camera {
    public class Camera
@@ -73,12 +74,19 @@ namespace camera {
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
          }
 
-         // unbinding textures
-         GL.BindTexture(TextureTarget.Texture2D, 0);
 
          // bind VAO, textures, shader
          GL.BindVertexArray(obj.vertexArrayObject);
-         obj.UseAllTextures();
+         // binding textures
+         if (obj.textures.Count == 0) {
+            //GL.Disable(EnableCap.Texture2D);
+            //GL.BindTexture(TextureTarget.Texture2D, 0);
+            obj.shaderProgram.SetInt("isTextured", 0);
+         } else {
+            //GL.Enable(EnableCap.Texture2D);
+            obj.shaderProgram.SetInt("isTextured", 1);
+            obj.UseAllTextures();
+         }
          obj.shaderProgram.SetMatrix4("projection", projection);
          obj.shaderProgram.SetMatrix4("view", view);
          obj.shaderProgram.SetMatrix4("model", obj.recalculateTransform());
