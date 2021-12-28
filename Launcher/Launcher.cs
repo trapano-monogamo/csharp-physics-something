@@ -6,6 +6,7 @@ using OpenTK.Mathematics;
 using System.Collections.Generic;
 using System.Linq;
 using renderable;
+using lightsource;
 using shader;
 using texture;
 using game;
@@ -76,12 +77,11 @@ namespace physics_goes_brr
                3, 7, 4,
             },
             new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
-            new Texture[] { new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ },
-            "cube"
+            new Texture[] { new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ }
          ));
 
          // light source
-         scene.renderableObjects.Add(new Renderable(
+         scene.lightSources.Add(new LightSource(
             new float[]{
             // position            color                     texture coords
             -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // near top    right
@@ -115,14 +115,11 @@ namespace physics_goes_brr
             },
             new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
             new Texture[] { /*new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")*/ },
-            "lamp"
+            Color4.White
          ));
-
-         var lamp = scene.renderableObjects.FindLast(x => x.name == "lamp");
-         //this.lightSource = new LightSource(LightSourceType.Point, new Color4(1.0f, 1.0f, 1.0f, 1.0f), ref lamp);;
-         lamp.Translate(new Vector3(2.5f, 1.3f, -1.2f));
-         lamp.Scale(new Vector3(0.5f, 0.5f, 0.5f));
-         //System.Console.WriteLine(System.String.Format("lamp: {0}, {1} \t ls: {2}, {3}", lamp.position.X, lamp.position.Y, lightSource.position.X, lightSource.position.Y));
+         scene.lightSources[0]
+            .Translate(new Vector3(2.0f, 1.4f, 2.1f))
+            .Scale(new Vector3(0.5f));
       }
 
       protected override void UserUnload()
@@ -175,6 +172,14 @@ namespace physics_goes_brr
          if (keyboard.IsKeyDown(Keys.LeftShift))
          {
             scene.camera.Move((-horizontalUp) * speed * (float)args.Time);
+         }
+         if (keyboard.IsKeyPressed(Keys.Z))
+         {
+            scene.camera.ZoomIn(1.8f);
+         }
+         if (keyboard.IsKeyPressed(Keys.X))
+         {
+            scene.camera.ZoomOut(1.8f);
          }
 
          var mouse = MouseState;

@@ -36,12 +36,23 @@ namespace camera {
          dir = -Vector3.UnitZ;
          fovy = _fovy;
 
-         SetPerspective(MathHelper.DegreesToRadians(fovy), 1.0f, .1f, 10.0f);
+         SetPerspective(fovy, 1.0f, .1f, 10.0f);
       }
 
       public void Move(Vector3 movement) {
          this.position += movement;
          this.UpdateView();
+      }
+
+      public void ZoomIn(float zoom)
+      {
+         this.fovy /= zoom;
+         this.UpdateProjection();
+      }
+      public void ZoomOut(float zoom)
+      {
+         this.fovy *= zoom;
+         this.UpdateProjection();
       }
 
       public void UpdateDirection() {
@@ -58,8 +69,13 @@ namespace camera {
          this.view = Matrix4.LookAt(position, position + dir, up);
       }
 
+      public void UpdateProjection()
+      {
+         SetPerspective(fovy, 1.0f, .1f, 10.0f);
+      }
+
       public void SetPerspective(float fovy, float aspect, float near, float far) {
-         this.projection = Matrix4.CreatePerspectiveFieldOfView(fovy, aspect, near, far);
+         this.projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(fovy), aspect, near, far);
       }
 
       public void SetOrthographic(float w, float h, float n, float f) {

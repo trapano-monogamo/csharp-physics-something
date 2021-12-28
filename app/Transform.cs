@@ -15,14 +15,17 @@ namespace transform {
          transformMatrix = Matrix4.Identity;
       }
 
-      public void Rotate(Vector3 _rotation) {
+      public Transform Rotate(Vector3 _rotation) {
          this.rotation += new Vector4(_rotation.X, _rotation.Y, _rotation.Z, 0.0f);
+         return this;
       }
-      public void Translate(Vector3 _movement) {
+      public Transform Translate(Vector3 _movement) {
          this.position += new Vector4(_movement.X, _movement.Y, _movement.Z, 0.0f);
+         return this;
       }
-      public void Scale(Vector3 _scaler) {
-         this.scale *= new Vector4(_scaler.X, _scaler.Y, _scaler.Z, 0.0f);
+      public Transform Scale(Vector3 _scaler) {
+         this.scale *= new Vector4(_scaler.X, _scaler.Y, _scaler.Z, 1.0f);
+         return this;
       }
 
       public Matrix4 recalculateTransform() {
