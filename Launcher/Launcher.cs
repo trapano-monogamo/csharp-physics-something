@@ -46,15 +46,15 @@ namespace physics_goes_brr
          // normal cube with texture
          scene.renderableObjects.Add(new Renderable(
             new float[]{
-            // position            color                     texture coords
-            -0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // near top    right
-             0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 0.0f,   // near bottom right
-             0.5f,  0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 1.0f,   // near bottom left
-            -0.5f,  0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 1.0f,   // near top    left
-            -0.5f, -0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // far  top    right
-             0.5f, -0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 0.0f,   // far  bottom right
-             0.5f,  0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 1.0f,   // far  bottom left
-            -0.5f,  0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 1.0f    // far  top    left
+            // position            normal              color                     texture coords
+            -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // near top    right
+             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 0.0f,   // near bottom right
+             0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 1.0f,   // near bottom left
+            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 1.0f,   // near top    left
+            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // far  top    right
+             0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 0.0f,   // far  bottom right
+             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,   1.0f, 1.0f,   // far  bottom left
+            -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 0.0f, 0.0f, 1.0f,   0.0f, 1.0f    // far  top    left
             },
             new uint[]{
                // front face
@@ -83,15 +83,15 @@ namespace physics_goes_brr
          // light source
          scene.lightSources.Add(new LightSource(
             new float[]{
-            // position            color                     texture coords
-            -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // near top    right
-             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,   // near bottom right
-             0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   // near bottom left
-            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   // near top    left
-            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // far  top    right
-             0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,   // far  bottom right
-             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   // far  bottom left
-            -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f    // far  top    left
+            // position            normal              color                     texture coords
+            -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // near top    right
+             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,   // near bottom right
+             0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   // near bottom left
+            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   // near top    left
+            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // far  top    right
+             0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,   // far  bottom right
+             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   // far  bottom left
+            -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f    // far  top    left
             },
             new uint[]{
                // front face
@@ -118,7 +118,7 @@ namespace physics_goes_brr
             Color4.White
          ));
          scene.lightSources[0]
-            .Translate(new Vector3(2.0f, 1.4f, 2.1f))
+            .Translate(new Vector3(2.0f, 1.4f, -2.1f))
             .Scale(new Vector3(0.5f));
       }
 

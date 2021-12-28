@@ -61,16 +61,20 @@ namespace renderable {
 
          // aPosition
          int posLocation = shaderProgram.GetAttribLocation("aPosition");
-         GL.VertexAttribPointer(posLocation, 3, VertexAttribPointerType.Float, false, 9 * sizeof(float), 0 * sizeof(float));
+         GL.VertexAttribPointer(posLocation, 3, VertexAttribPointerType.Float, false, 12 * sizeof(float), 0 * sizeof(float));
          GL.EnableVertexAttribArray(posLocation);
+         // aNormal
+         int norLocation = shaderProgram.GetAttribLocation("aNormal");
+         GL.VertexAttribPointer(norLocation, 3, VertexAttribPointerType.Float, false, 12 * sizeof(float), 3 * sizeof(float));
+         GL.EnableVertexAttribArray(norLocation);
          // aColor
          int colLocation = shaderProgram.GetAttribLocation("aColor");
-         GL.VertexAttribPointer(colLocation, 4, VertexAttribPointerType.Float, false, 9 * sizeof(float), 3 * sizeof(float));
+         GL.VertexAttribPointer(colLocation, 4, VertexAttribPointerType.Float, false, 12 * sizeof(float), 6 * sizeof(float));
          GL.EnableVertexAttribArray(colLocation);
          // aTexCoords
          int texCoordLocation = shaderProgram.GetAttribLocation("aTexCoord");
          GL.EnableVertexAttribArray(texCoordLocation);
-         GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 9 * sizeof(float), 7 * sizeof(float));
+         GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 12 * sizeof(float), 10 * sizeof(float));
 
          UseAllTextures();
 
