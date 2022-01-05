@@ -5,6 +5,7 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 using OpenTK.Mathematics;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using renderable;
 using lightsource;
 using shader;
@@ -27,9 +28,15 @@ namespace physics_goes_brr
 {
    public class MyGame : Game
    {
+      float r = 0.0f;
+      float s = 0.0f;
+      float t = 0.0f;
+
       public MyGame(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
           : base(gameWindowSettings, nativeWindowSettings)
-      {}
+      {
+
+      }
 
       protected override void UserLoad()
       {
@@ -76,6 +83,45 @@ namespace physics_goes_brr
             new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
             new Texture[] { new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")/*, new Texture("./res/trollface.jpg")*/ }
          ));
+
+         scene.renderableObjects.Add(new Renderable(
+            new float[]{
+            // position            normal              color                     texture coords
+            -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.1f, 0.2f, 0.5f, 1.0f,   0.0f, 0.0f,   // near top    right
+             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.1f, 0.2f, 0.5f, 1.0f,   1.0f, 0.0f,   // near bottom right
+             0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.1f, 0.2f, 0.5f, 1.0f,   1.0f, 1.0f,   // near bottom left
+            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.1f, 0.2f, 0.5f, 1.0f,   0.0f, 1.0f,   // near top    left
+            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.1f, 0.2f, 0.5f, 1.0f,   0.0f, 0.0f,   // far  top    right
+             0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.1f, 0.2f, 0.5f, 1.0f,   1.0f, 0.0f,   // far  bottom right
+             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.1f, 0.2f, 0.5f, 1.0f,   1.0f, 1.0f,   // far  bottom left
+            -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.1f, 0.2f, 0.5f, 1.0f,   0.0f, 1.0f    // far  top    left
+            },
+            new uint[]{
+               // front face
+               0, 1, 2,
+               2, 3, 0,
+               // back face
+               7, 6, 5,
+               5, 4, 7,
+               // left face
+               4, 5, 1,
+               1, 0, 4,
+               // right face
+               3, 2, 6,
+               6, 7, 3,
+               // top face
+               1, 5, 6,
+               6, 2, 1,
+               // bottom face
+               4, 0, 3,
+               3, 7, 4,
+            },
+            new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
+            new Texture[] {}
+         ));
+         scene.renderableObjects[1]
+            .Translate(new Vector3(-1.5f, 0.4f, 1.8f))
+            .Rotate(new Vector3(30.0f, 90.0f, 20.0f));
 
          // light source
          scene.lightSources.Add(new LightSource(
@@ -196,7 +242,11 @@ namespace physics_goes_brr
 
       protected override void UserUpdate(FrameEventArgs args)
       {
+         r += 0.1f;
+         s += 0.1f;
+         t += 0.1f;
          scene.renderableObjects[0].Rotate(new Vector3(.0f, .1f, .2f));
+         scene.lightSources[0].color = new Vector3(MathF.Abs(MathF.Sin(MathHelper.DegreesToRadians(2 * r))), MathF.Abs(MathF.Sin(MathHelper.DegreesToRadians(4 * s))), MathF.Abs(MathF.Sin(MathHelper.DegreesToRadians(t))));
       }
 
       protected override void UserRender(FrameEventArgs args)

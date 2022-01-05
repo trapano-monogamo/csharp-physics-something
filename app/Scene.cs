@@ -25,13 +25,16 @@ namespace scene
 
          // render lightSources and perform calculations
          foreach (var l in lightSources) {
+            // light sources are not affected by light
             camera.RenderLight(l, wireframe);
+            // perfomr calculations and build light maps
             light_direction = l.direction;
             light_color = l.color;
          }
 
          // render renderables
          foreach (var r in renderableObjects) {
+            // render normal objects with collected lighting data
             camera.Render(r, light_direction, light_color, wireframe);
          }
       }
