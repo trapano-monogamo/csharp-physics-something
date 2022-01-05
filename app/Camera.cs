@@ -7,11 +7,14 @@ using lightsource;
 namespace camera {
    public class Camera
    {
+      // transform
       public Vector3 position;
       public Vector3 up;
       public Vector3 dir;
       public Vector3 right;
 
+      // view control
+      public float fovy;
       public float _yaw;
       public float _pitch;
       public float yaw {
@@ -23,8 +26,7 @@ namespace camera {
          set { _pitch = Math.Clamp(value, -89.0f, 89.0f); }
       }
 
-      public float fovy;
-
+      // matrices
       public Matrix4 projection;
       public Matrix4 view;
 

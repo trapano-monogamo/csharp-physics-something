@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "taaI5kzZFVNPVDW8SigQ8aO05YvbPRkCIZamvXnTq7+GeE77LLH2oKH50acWbjUH4s+cL2GSaO0uQTlgbovTuQ==",
+  "dgSpecHash": "HRWeNSOLIQa9Gj1wqt7i8Q3I2GR76fR5MHUbay5IfB8lsx2KUJBTNey23tOSVwDCxOspg6Exu5FR4FxjjXnNAA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\filip\\Documents\\Scripts\\C#\\physics_goes_brr\\physics_goes_brr.csproj",
+  "projectFilePath": "C:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\filip\\.nuget\\packages\\opentk\\4.6.7\\opentk.4.6.7.nupkg.sha512",
     "C:\\Users\\filip\\.nuget\\packages\\opentk.compute\\4.6.7\\opentk.compute.4.6.7.nupkg.sha512",

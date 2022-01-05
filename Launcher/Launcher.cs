@@ -16,7 +16,7 @@ using game;
 // TODO : Material class
 // TODO : Mesh class
 // TODO : ControlHelper/InputHelper helper class
-// TODO : LightSource
+// DONE : LightSource
 //          -> consider making a lightSources list in the game (in the future scene class) and render them first, then the renderableObjects
 // DONE : Scene (renderables + light sources + camera)
 // DONE : abstract the game class (use the default OnLoad etc, and call there the OnLoad defined by the user their derived class)

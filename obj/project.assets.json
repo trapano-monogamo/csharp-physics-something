@@ -396,11 +396,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\filip\\Documents\\Scripts\\C#\\physics_goes_brr\\physics_goes_brr.csproj",
+      "projectUniqueName": "C:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj",
       "projectName": "physics_goes_brr",
-      "projectPath": "C:\\Users\\filip\\Documents\\Scripts\\C#\\physics_goes_brr\\physics_goes_brr.csproj",
+      "projectPath": "C:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj",
       "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\filip\\Documents\\Scripts\\C#\\physics_goes_brr\\obj\\",
+      "outputPath": "C:\\dev\\C#\\physics_goes_brr\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
