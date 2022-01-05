@@ -15,14 +15,21 @@ namespace lightsource
    public class LightSource : Renderable {
       public LightSourceType type;
       public Vector3 direction;
-      public Color4 color;
+      public Vector3 color;
 
       public LightSource() {}
 
-      public LightSource(float[] vertexRawData, uint[] indexData, Shader _shaderProgram, Texture[] _textures, Color4 col, string name = "unknown")
+      public LightSource(float[] vertexRawData, uint[] indexData, Shader _shaderProgram, Texture[] _textures, Vector3 col, string name = "unknown")
          : base(vertexRawData, indexData, _shaderProgram, _textures, name)
       {
          this.color = col;
+      }
+
+      public LightSource(float[] vertexRawData, uint[] indexData, Shader _shaderProgram, Texture[] _textures, Vector3 col, Vector3 dir, string name = "unknown")
+         : base(vertexRawData, indexData, _shaderProgram, _textures, name)
+      {
+         this.color = col;
+         this.direction = dir;
       }
    }
 }

@@ -77,6 +77,13 @@ namespace shader
          GL.Uniform1(location, value);
       }
 
+      public void SetVector3(string name, Vector3 vec)
+      {
+         this.UseProgram();
+         int location = GL.GetUniformLocation(handle, name);
+         GL.Uniform3(location, vec.X, vec.Y, vec.Z);
+      }
+
       public void UseProgram()
       {
          GL.UseProgram(this.handle);

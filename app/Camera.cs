@@ -84,7 +84,7 @@ namespace camera {
          this.projection = Matrix4.CreateOrthographic(w,h,n,f);
       }
 
-      public void Render(Renderable obj, bool wireframeMode) {
+      public void Render(Renderable obj, Vector3 light_direction, Vector3 light_color, bool wireframeMode) {
          // wireframe mode
          if (wireframeMode) {
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
@@ -108,6 +108,38 @@ namespace camera {
          obj.shaderProgram.SetMatrix4("projection", projection);
          obj.shaderProgram.SetMatrix4("view", view);
          obj.shaderProgram.SetMatrix4("model", obj.recalculateTransform());
+         obj.shaderProgram.SetVector3("light_direction", light_direction);
+         obj.shaderProgram.SetVector3("light_color", light_color);
+         obj.shaderProgram.UseProgram();
+         
+         // draw call
+         GL.DrawElements(PrimitiveType.Triangles, obj._indexData.Length, DrawElementsType.UnsignedInt, 0);
+      }
+
+      public void RenderLight(LightSource obj, bool wireframeMode) {
+         // wireframe mode
+         if (wireframeMode) {
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+         } else {
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
+         }
+
+         // bind VAO, textures, shader
+         GL.BindVertexArray(obj.vertexArrayObject);
+         // binding textures
+         if (obj.textures.Count == 0) {
+            //GL.Disable(EnableCap.Texture2D);
+            //GL.BindTexture(TextureTarget.Texture2D, 0);
+            obj.shaderProgram.SetInt("isTextured", 0);
+         } else {
+            //GL.Enable(EnableCap.Texture2D);
+            obj.shaderProgram.SetInt("isTextured", 1);
+            obj.UseAllTextures();
+         }
+         obj.shaderProgram.SetMatrix4("projection", projection);
+         obj.shaderProgram.SetMatrix4("view", view);
+         obj.shaderProgram.SetMatrix4("model", obj.recalculateTransform());
+
          obj.shaderProgram.UseProgram();
          
          // draw call

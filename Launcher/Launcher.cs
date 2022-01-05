@@ -11,17 +11,17 @@ using shader;
 using texture;
 using game;
 
-// TODO : refactor naming of everything
+// TODO: refactor naming of everything
 // --- classes:
-// TODO : Material class
-// TODO : Mesh class
-// TODO : ControlHelper/InputHelper helper class
-// DONE : LightSource
+// TODO: Material class
+// TODO: Mesh class
+// TODO: ControlHelper/InputHelper helper class
+// DONE: LightSource
 //          -> consider making a lightSources list in the game (in the future scene class) and render them first, then the renderableObjects
-// DONE : Scene (renderables + light sources + camera)
-// DONE : abstract the game class (use the default OnLoad etc, and call there the OnLoad defined by the user their derived class)
+// DONE: Scene (renderables + light sources + camera)
+// DONE: abstract the game class (use the default OnLoad etc, and call there the OnLoad defined by the user their derived class)
 // --- features:
-// TODO : integrate .obj and .mtl files with the renderable creation process
+// TODO: integrate .obj and .mtl files with the renderable creation process
 
 namespace physics_goes_brr
 {
@@ -29,7 +29,7 @@ namespace physics_goes_brr
    {
       public MyGame(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
           : base(gameWindowSettings, nativeWindowSettings)
-      { }
+      {}
 
       protected override void UserLoad()
       {
@@ -37,9 +37,6 @@ namespace physics_goes_brr
          GL.Enable(EnableCap.DepthTest);
 
          // -- resource loading code --
-
-         //var temp = ObjectLoader.LoadObjFile("./res/models/untitled.obj");
-         //temp.Print();
 
          scene.camera.Move(new Vector3(.0f, .0f, 3.0f));
 
@@ -84,14 +81,14 @@ namespace physics_goes_brr
          scene.lightSources.Add(new LightSource(
             new float[]{
             // position            normal              color                     texture coords
-            -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // near top    right
-             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,   // near bottom right
-             0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   // near bottom left
-            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   // near top    left
-            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // far  top    right
-             0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,   // far  bottom right
-             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   // far  bottom left
-            -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f    // far  top    left
+            -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.3f, 1.0f, 0.8f, 1.0f,   0.0f, 0.0f,   // near top    right
+             0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.3f, 1.0f, 0.8f, 1.0f,   1.0f, 0.0f,   // near bottom right
+             0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.3f, 1.0f, 0.8f, 1.0f,   1.0f, 1.0f,   // near bottom left
+            -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 1.0f,   0.3f, 1.0f, 0.8f, 1.0f,   0.0f, 1.0f,   // near top    left
+            -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.3f, 1.0f, 0.8f, 1.0f,   0.0f, 0.0f,   // far  top    right
+             0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.3f, 1.0f, 0.8f, 1.0f,   1.0f, 0.0f,   // far  bottom right
+             0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.3f, 1.0f, 0.8f, 1.0f,   1.0f, 1.0f,   // far  bottom left
+            -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f,   0.3f, 1.0f, 0.8f, 1.0f,   0.0f, 1.0f    // far  top    left
             },
             new uint[]{
                // front face
@@ -113,9 +110,10 @@ namespace physics_goes_brr
                4, 0, 3,
                3, 7, 4,
             },
-            new Shader("./res/shaders/vert_shader.vert", "./res/shaders/frag_shader.frag"),
+            new Shader("./res/shaders/lamp/vert_shader.vert", "./res/shaders/lamp/frag_shader.frag"),
             new Texture[] { /*new Texture("./res/textures/container.jpg"), new Texture("./res/textures/awesomeface.jpg")*/ },
-            Color4.White
+            new Vector3(0.3f, 1.0f, 0.8f),
+            new Vector3(1.0f)
          ));
          scene.lightSources[0]
             .Translate(new Vector3(2.0f, 1.4f, -2.1f))
