@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj": {}
+    "c:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj": {}
   },
   "projects": {
-    "C:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj": {
+    "c:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj",
+        "projectUniqueName": "c:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj",
         "projectName": "physics_goes_brr",
-        "projectPath": "C:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj",
+        "projectPath": "c:\\dev\\C#\\physics_goes_brr\\physics_goes_brr.csproj",
         "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\C#\\physics_goes_brr\\obj\\",
+        "outputPath": "c:\\dev\\C#\\physics_goes_brr\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -64,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

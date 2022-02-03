@@ -3,8 +3,6 @@ using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 using OpenTK.Mathematics;
-using System.Collections.Generic;
-using System.Linq;
 using System;
 using renderable;
 using lightsource;
@@ -28,14 +26,14 @@ namespace physics_goes_brr
 {
    public class MyGame : Game
    {
-      float r = 0.0f;
-      float s = 0.0f;
-      float t = 0.0f;
+		 float r = 0.0f;
+		 float s = 0.0f;
+		 float t = 0.0f;
 
-      public MyGame(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
-          : base(gameWindowSettings, nativeWindowSettings)
+		 public MyGame(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
+				: base(gameWindowSettings, nativeWindowSettings)
       {
-
+			 // -- snippet --
       }
 
       protected override void UserLoad()
@@ -233,7 +231,7 @@ namespace physics_goes_brr
             float dx = mouse.X - lastPos.X;
             float dy = mouse.Y - lastPos.Y;
             scene.camera.pitch -= dy * sensitivity;
-            scene.camera.yaw += dx * sensitivity;
+				scene.camera.yaw += dx * sensitivity;
             lastPos = new Vector2(mouse.X, mouse.Y);
             //System.Console.WriteLine(System.String.Format("x: {0}, y: {1}\t dx: {2}, dy: {3}", mouse.X, mouse.Y, dx, dy));
             scene.camera.UpdateDirection();

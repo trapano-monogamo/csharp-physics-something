@@ -14,6 +14,7 @@ namespace camera {
       public Vector3 right;
 
       // view control
+		// TODO: make fovy a property, so that you can clamp it whenever you set it
       public float fovy;
       public float _yaw;
       public float _pitch;

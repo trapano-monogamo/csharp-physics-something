@@ -50,7 +50,6 @@ C:\dev\C#\physics_goes_brr\bin\Debug\net5.0\runtimes\linux-x64\native\libglfw.so
 C:\dev\C#\physics_goes_brr\bin\Debug\net5.0\runtimes\osx-x64\native\libglfw.3.dylib
 C:\dev\C#\physics_goes_brr\bin\Debug\net5.0\runtimes\win-x64\native\glfw3.dll
 C:\dev\C#\physics_goes_brr\bin\Debug\net5.0\runtimes\win-x86\native\glfw3.dll
-C:\dev\C#\physics_goes_brr\obj\Debug\net5.0\physics_goes_brr.csprojAssemblyReference.cache
 C:\dev\C#\physics_goes_brr\obj\Debug\net5.0\physics_goes_brr.GeneratedMSBuildEditorConfig.editorconfig
 C:\dev\C#\physics_goes_brr\obj\Debug\net5.0\physics_goes_brr.AssemblyInfoInputs.cache
 C:\dev\C#\physics_goes_brr\obj\Debug\net5.0\physics_goes_brr.AssemblyInfo.cs
@@ -60,3 +59,4 @@ C:\dev\C#\physics_goes_brr\obj\Debug\net5.0\physics_goes_brr.dll
 C:\dev\C#\physics_goes_brr\obj\Debug\net5.0\ref\physics_goes_brr.dll
 C:\dev\C#\physics_goes_brr\obj\Debug\net5.0\physics_goes_brr.pdb
 C:\dev\C#\physics_goes_brr\obj\Debug\net5.0\physics_goes_brr.genruntimeconfig.cache
+C:\dev\C#\physics_goes_brr\obj\Debug\net5.0\physics_goes_brr.csproj.AssemblyReference.cache
